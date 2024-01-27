@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: ms-authuser
+  datasource:
+    url: jdbc:mysql://localhost:3310/authuser?useTimezone=true&serverTimezone=UTC&createDatabaseIfNotExist=true
+    username: ${ROOT_USER:root}
+    password: ${ROOT_PASSWORD:example}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
