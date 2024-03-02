@@ -8,7 +8,7 @@ import java.util.UUID;
 public interface UserService {
     User save(User user);
 
-    List<User> findAll();
+    List<User> findAll(UUID courseId);
 
     User findById(UUID id);
 

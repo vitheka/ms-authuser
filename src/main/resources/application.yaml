@@ -9,3 +9,9 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+
+ead:
+  api:
+    url:
+      course: 'http://localhost:8082'
+    endpoint: '/v1/courses'

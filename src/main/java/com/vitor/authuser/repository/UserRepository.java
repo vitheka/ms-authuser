@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -28,4 +29,7 @@ public interface UserRepository extends JpaRepository<User, UUID> {
     @Query("update User usuario set usuario.email = :email where usuario.userId = :userId")
     void updateEmail(@Param("userId") UUID userId,
                      @Param("email") String email);
+
+    @Query("SELECT usuario FROM User usuario JOIN usuario.usersCourses uc WHERE uc.courseId = :courseId")
+    List<User> findAll(@Param("courseId") UUID courseId);
 }

@@ -24,9 +24,9 @@ public class UserController {
     private final UserMapper mapper;
 
     @GetMapping
-    public ResponseEntity<List<UserGetResponse>> getAllUsers() {
+    public ResponseEntity<List<UserGetResponse>> getAllUsers(@RequestParam(required = false) UUID courseId) {
 
-        var usersFound = userService.findAll();
+        var usersFound = userService.findAll(courseId);
 
         var response = mapper.toUserGetResponses(usersFound);
 

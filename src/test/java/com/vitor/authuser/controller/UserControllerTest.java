@@ -57,10 +57,11 @@ class UserControllerTest {
     @Order(1)
     void findAll_ReturnsAListOfUsers_WhenSuccessful() throws Exception {
 
+        var courseId = UUID.fromString("7544bf2c-79c5-46ac-b494-4c18a1080887");
         var response = fileUtils.readResourceFile("user-json/get/get-request-list-user-200.json");
         var userFound = userUtils.newUserToSave();
 
-        when(userService.findAll()).thenReturn(List.of(userFound));
+        when(userService.findAll(courseId)).thenReturn(List.of(userFound));
 
         mvc.perform(get(URL))
                 .andDo(print())
@@ -72,8 +73,8 @@ class UserControllerTest {
     @DisplayName("findAll() Returns a empty list of Users")
     @Order(2)
     void findAll_ReturnEmptyList_WhenNoUsersAreFound() throws Exception {
-
-        when(userService.findAll()).thenReturn(Collections.emptyList());
+        var courseId = UUID.fromString("7544bf2c-79c5-46ac-b494-4c18a1080887");
+        when(userService.findAll(courseId)).thenReturn(Collections.emptyList());
 
         mvc.perform(get(URL))
                 .andDo(print())

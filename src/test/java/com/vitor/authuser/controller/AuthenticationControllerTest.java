@@ -104,7 +104,7 @@ class AuthenticationControllerTest {
         var response = fileUtils.readResourceFile("user-json/response/username-already-taken-response-404.json");
 
         BDDMockito.when(userService.save(ArgumentMatchers.any()))
-                .thenThrow(new UsernameAlreadyExistsException("Username is already in taken!"));
+                .thenThrow(new UsernameAlreadyExistsException("Username is already taken!"));
 
         mvc.perform(post(URL)
                         .content(request)

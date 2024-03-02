@@ -2,6 +2,7 @@ package com.vitor.authuser.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.vitor.authuser.enums.UserStatus;
 import com.vitor.authuser.enums.UserType;
 import jakarta.persistence.*;
@@ -11,6 +12,7 @@ import org.hibernate.annotations.UuidGenerator;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -20,6 +22,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 public class User implements Serializable {
     @Serial
@@ -53,4 +56,8 @@ public class User implements Serializable {
     private LocalDateTime creationDate;
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private LocalDateTime lastUpdateDate;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<UserCourse> usersCourses;
 }

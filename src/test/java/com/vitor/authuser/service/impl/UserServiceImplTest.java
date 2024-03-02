@@ -93,9 +93,11 @@ class UserServiceImplTest {
     @Order(4)
     void findAll_ReturnsAListOfUsers_WhenSuccessful() {
 
-        when(repository.findAll()).thenReturn(this.usersList);
+        var courseId = UUID.fromString("7544bf2c-79c5-46ac-b494-4c18a1080887");
 
-        var user = service.findAll();
+        when(repository.findAll(courseId)).thenReturn(this.usersList);
+
+        var user = service.findAll(courseId);
 
         Assertions.assertThat(user).isNotNull().isNotEmpty();
         Assertions.assertThat(user).hasSameElementsAs(this.usersList);

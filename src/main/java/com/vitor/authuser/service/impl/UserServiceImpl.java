@@ -39,9 +39,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAll() {
-        return repository.findAll();
+    public List<User> findAll(UUID courseId) {
+        return courseId != null ? repository.findAll(courseId) : repository.findAll();
     }
+
 
     @Override
     public User findById(UUID id) {
